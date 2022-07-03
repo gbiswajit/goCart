@@ -9,7 +9,7 @@ display: flex;
 flex-wrap: wrap;
 margin-top:50px;
 justify-content:space-between;
-`;
+`
 
 
 const Products = () => {
