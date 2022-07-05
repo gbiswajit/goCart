@@ -7,8 +7,8 @@ const Container=styled.div`
 padding: 20px;
 display: flex;
 flex-wrap: wrap;
-margin-top:50px;
-justify-content:space-between;
+justify-content: space-between;
+margin-top: 25px;
 `
 
 
