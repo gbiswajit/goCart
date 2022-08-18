@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { mobile } from "../Responsive";
 
 const Container = styled.div`
   width: 100vw;
@@ -13,12 +14,15 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  
+  ${mobile({height:"160vh"})}
 `;
 
 const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
   background-color: white;
+  ${mobile({width:"80vw"})}
 `;
 
 const BtnContainer= styled.div`

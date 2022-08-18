@@ -5,11 +5,13 @@ import Announcement from '../Components/Announcement'
 import Footer from '../Components/Footer'
 import Navbar from '../Components/Navbar'
 import NewsLetter from '../Components/Newsletter'
+import { mobile } from '../Responsive'
 
 const Container = styled.div``
 const Wrapper = styled.div`
 display:flex;
 padding: 50px;
+${mobile({flexDirection:"column"})}
 `
 const ImageContainer = styled.div`
 flex:1;
@@ -18,6 +20,7 @@ const Image = styled.img`
 height:90vh;
 width: 90%;
 object-fit: cover;
+${mobile({height:"50vh"})}
 `
 const InfoContainer = styled.div`
 flex:1;
@@ -72,13 +75,16 @@ const AddContainer = styled.div`
   width: 50%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  ${mobile({width:"60vw"})}
 `;
 
 const AmountContainer = styled.div`
   display: flex;
-  align-items: center;
+  align-items:center;
+  justify-content:space-between;
   font-weight: 700;
+  ${mobile({marginRight:"20px"})}
 `;
 
 const Amount = styled.span`
@@ -94,13 +100,15 @@ const Amount = styled.span`
 
 const Button = styled.button`
   padding: 15px;
+  margin-left:20px;
   border: 2px solid teal;
   background-color: white;
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 200;
   &:hover{
       background-color: #f8f4f4;
   }
+  ${mobile({height:"30px",width:"100px", padding:"0px"})}
 `;
 
 export default function Product() {

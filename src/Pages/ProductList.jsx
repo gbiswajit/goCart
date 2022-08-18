@@ -5,6 +5,7 @@ import Anouncement from '../Components/Announcement'
 import Products from '../Components/Products'
 import NewsLetter from '../Components/Newsletter'
 import Footer from '../Components/Footer'
+import { mobile } from '../Responsive'
 
 const Container=styled.div``
 const Title=styled.h1`
@@ -13,10 +14,12 @@ margin: 20px;
 const FilterContainer=styled.div`
 display: flex;
 justify-content: space-between;
+${mobile({flexDirection:"column"})}
 `
 const Filter=styled.div`
 display:flex;
 margin: 20px;
+${mobile({margin:"10px"})}
 `
 
 const FilterText=styled.span`
