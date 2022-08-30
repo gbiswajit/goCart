@@ -21,7 +21,7 @@ const Top = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  ${mobile({flexDirection:"column", paDding:"10px 0px", flexDirection:"column" })}
+  ${mobile({flexDirection:"column", paDding:"10px 0px" })}
 `;
 
 const TopButton = styled.button`

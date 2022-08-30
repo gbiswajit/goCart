@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components';
 import { mobile } from '../Responsive';
+import { Link } from 'react-router-dom';
+
 const Container = styled.div`
 flex:1;
 position:relative;
@@ -42,11 +44,13 @@ ${mobile({fontSize: "15px"})}
 const CategoryItem = ({ item }) => {
     return (
         <Container>
+            <Link to={`/products/${item.cat}`}>
             <Image src={item.img}/>
             <InfoContainer>
                 <Title>{item.title}</Title>
                 <Button>Shop Now</Button>
             </InfoContainer>
+            </Link>
         </Container>
     )
 }

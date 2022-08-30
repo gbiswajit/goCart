@@ -27,16 +27,19 @@ export const categories=[
         id:1,
         title: "Shirts",
         img: "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17641548/2022/4/4/bd8e2c2c-0f27-49d0-9dc1-4308cf1fdf7d1649061685080-WROGN-Men-Shirts-5631649061684612-1.jpg",
+        cat:"shirts"
     },
     {
         id:2,
         title: "Jackets",
         img:"https://assets.ajio.com/medias/sys_master/root/h53/hd2/12575460720670/-473Wx593H-410128124-900-MODEL.jpg",
+        cat: "jackets"
     },
     {
         id:3,
         title: "Shoes",
         img:"https://media.architecturaldigest.com/photos/57a11cbeb6c434ab487bc26b/2:1/w_1077,h_538,c_limit/nikes-senior-designer-explains-what-went-into-new-air-jordan-01.png",
+        cat:"shoes"
     }
 ];
 
