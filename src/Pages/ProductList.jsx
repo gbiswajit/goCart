@@ -6,6 +6,8 @@ import Products from '../Components/Products'
 import NewsLetter from '../Components/Newsletter'
 import Footer from '../Components/Footer'
 import { mobile } from '../Responsive'
+import { useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 const Container=styled.div``
 const Title=styled.h1`
@@ -36,6 +38,20 @@ margin-right:10px;
 const Option=styled.option``
 
 export default function ProductList() {
+  const location =useLocation();
+  const cat=location.pathname.split("/")[2]
+  const [filter, setFilters]=useState({})
+  const [sort, setSort]=useState("newest")
+
+  const handleFilter=(e)=>{
+    const value=e.target.value
+    setFilters({
+      ...filter,
+      [e.target.name]: value
+    })
+  }
+
+  console.log(filter);
   return (
     <Container>
       <Navbar/>
@@ -44,15 +60,15 @@ export default function ProductList() {
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products: </FilterText>
-          <Select>
-            <Option disabled selected>Color</Option>
+          <Select name='color' onChange={handleFilter}>
+            <Option disabled>Color</Option>
             <Option>White</Option>
             <Option>Red</Option>
             <Option>Black</Option>
             <Option>Yellow</Option>
           </Select>
-          <Select>
-            <Option disabled selected>Size</Option>
+          <Select name='size' onChange={handleFilter}>
+            <Option disabled>Size</Option>
             <Option>Small</Option>
             <Option>Medium</Option>
             <Option>Large</Option>
@@ -61,14 +77,14 @@ export default function ProductList() {
         </Filter>
         <Filter>
           <FilterText>Sort Products</FilterText>
-          <Select>
-            <Option disabled selected> Newest</Option>
-            <Option>Price (Desc)</Option>
-            <Option>Price (Asc)</Option>
+          <Select onChange={(e)=>setSort(e.target.value)}>
+            <Option value="newest"> Newest</Option>
+            <Option value="desc">Price (Desc)</Option>
+            <Option value="asc">Price (Asc)</Option>
           </Select>
         </Filter>
       </FilterContainer>
-      <Products/>
+      <Products cat={cat} filters={filter} sort={sort} />
       <NewsLetter/>
       <Footer/>
     </Container>

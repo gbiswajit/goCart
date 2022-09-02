@@ -7,8 +7,7 @@ import Cart from "./Pages/Cart";
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Navigate
+  Route
 } from "react-router-dom";
 
 const App = () => {

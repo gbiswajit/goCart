@@ -12,7 +12,8 @@ margin-top: 25px;
 `
 
 
-const Products = () => {
+const Products = ({cat, filters, sort}) => {
+  console.log(cat, filters, sort)
   return (
     <Container>
         {popularProducts.map((item)=>(
