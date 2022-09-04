@@ -8,6 +8,12 @@ const productRoute=require("./routes/product")
 const cartRoute= require("./routes/cart")
 const orderRoute= require("./routes/order")
 const CryptoJS=require("crypto-js")
+const cors=require("cors")
+app.use(
+    cors({
+        origin: "*"
+    })
+)
 
 dotenv.config();
 

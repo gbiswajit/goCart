@@ -27,13 +27,13 @@ export const categories=[
         id:1,
         title: "Shirts",
         img: "https://assets.myntassets.com/dpr_1.5,q_60,w_400,c_limit,fl_progressive/assets/images/17641548/2022/4/4/bd8e2c2c-0f27-49d0-9dc1-4308cf1fdf7d1649061685080-WROGN-Men-Shirts-5631649061684612-1.jpg",
-        cat:"shirts"
+        cat:"shirt"
     },
     {
         id:2,
-        title: "Jackets",
-        img:"https://assets.ajio.com/medias/sys_master/root/h53/hd2/12575460720670/-473Wx593H-410128124-900-MODEL.jpg",
-        cat: "jackets"
+        title: "Jeans",
+        img:"https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+        cat: "pants"
     },
     {
         id:3,

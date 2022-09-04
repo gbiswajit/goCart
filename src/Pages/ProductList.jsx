@@ -56,23 +56,23 @@ export default function ProductList() {
     <Container>
       <Navbar/>
       <Anouncement/>
-      <Title>Dresses</Title>
+      <Title>{cat}</Title>
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products: </FilterText>
           <Select name='color' onChange={handleFilter}>
             <Option disabled>Color</Option>
-            <Option>White</Option>
-            <Option>Red</Option>
-            <Option>Black</Option>
-            <Option>Yellow</Option>
+            <Option>green</Option>
+            <Option>red</Option>
+            <Option>black</Option>
+            <Option>yellow</Option>
           </Select>
           <Select name='size' onChange={handleFilter}>
             <Option disabled>Size</Option>
-            <Option>Small</Option>
-            <Option>Medium</Option>
-            <Option>Large</Option>
-            <Option>Extra Large</Option>
+            <Option>S</Option>
+            <Option>M</Option>
+            <Option>L</Option>
+            <Option>XL</Option>
           </Select>
         </Filter>
         <Filter>
