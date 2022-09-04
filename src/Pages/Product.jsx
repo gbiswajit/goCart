@@ -6,12 +6,16 @@ import Footer from '../Components/Footer'
 import Navbar from '../Components/Navbar'
 import NewsLetter from '../Components/Newsletter'
 import { mobile } from '../Responsive'
+import { publicRequest } from '../requestMethod'
+import { useState } from 'react'
+import { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 
 const Container = styled.div``
 const Wrapper = styled.div`
 display:flex;
 padding: 50px;
-${mobile({flexDirection:"column"})}
+${mobile({ flexDirection: "column" })}
 `
 const ImageContainer = styled.div`
 flex:1;
@@ -20,7 +24,7 @@ const Image = styled.img`
 height:90vh;
 width: 90%;
 object-fit: cover;
-${mobile({height:"50vh"})}
+${mobile({ height: "50vh" })}
 `
 const InfoContainer = styled.div`
 flex:1;
@@ -76,7 +80,7 @@ const AddContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  ${mobile({width:"60vw"})}
+  ${mobile({ width: "60vw" })}
 `;
 
 const AmountContainer = styled.div`
@@ -84,7 +88,7 @@ const AmountContainer = styled.div`
   align-items:center;
   justify-content:space-between;
   font-weight: 700;
-  ${mobile({marginRight:"20px"})}
+  ${mobile({ marginRight: "20px" })}
 `;
 
 const Amount = styled.span`
@@ -108,45 +112,67 @@ const Button = styled.button`
   &:hover{
       background-color: #f8f4f4;
   }
-  ${mobile({height:"30px",width:"100px", padding:"0px"})}
+  ${mobile({ height: "30px", width: "100px", padding: "0px" })}
 `;
 
 export default function Product() {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  const [product, setProduct] = useState({});
+  const [quantity, setQuantity]=useState(1);
+  const [color, setColor]=useState("");
+  const [size, setSize]=useState("");
+
+  useEffect(() => {
+    const getProduct = async () => {
+      try {
+        const res = await publicRequest.get("/products/find/" + id);
+        setProduct(res.data);
+      } catch { }
+    };
+    getProduct();
+  }, [id]);
+
+  const handleQuantity= (type)=>{
+    if(type==="dec"){
+      quantity>1 && setQuantity(quantity-1)
+    }else{
+      setQuantity(quantity+1)
+    }
+  }
   return (
     <Container>
       <Navbar />
       <Announcement />
       <Wrapper>
         <ImageContainer>
-          <Image src="https://assets.ajio.com/medias/sys_master/root/h53/hd2/12575460720670/-473Wx593H-410128124-900-MODEL.jpg" />
+          <Image src={product.img} />
         </ImageContainer>
         <InfoContainer>
-          <Title>Jacket </Title>
-          <Description>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam quam, quia sit ratione dolor eveniet. Veritatis rem quae sequi dolores quidem dolor nulla? Enim maiores dolor in saepe porro mollitia?</Description>
-          <Price> 20$ </Price>
+          <Title>{product.title} </Title>
+          <Description>{product.desc}</Description>
+          <Price> {product.price}</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              <FilterColor color="black" />
-              <FilterColor color="darkblue" />
-              <FilterColor color="gray" />
+              {product.color?.map((c) => (
+                <FilterColor color={c} key={c} onClick={()=>setColor(c)}/>
+              ))}
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize>
-                <FilterSizeOption>XS</FilterSizeOption>
-                <FilterSizeOption>S</FilterSizeOption>
-                <FilterSizeOption>M</FilterSizeOption>
-                <FilterSizeOption>L</FilterSizeOption>
-                <FilterSizeOption>XL</FilterSizeOption>
+              <FilterSize onChange={(e)=>setSize(e.target.value)}>
+              {product.size?.map((s) => (
+                <FilterSizeOption key={s}>{s}</FilterSizeOption>
+              ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove />
-              <Amount>1</Amount>
-              <Add />
+              <Remove onClick={()=>handleQuantity("dec")}/>
+              <Amount>{quantity}</Amount>
+              <Add onClick={()=>handleQuantity("inc")}/>
             </AmountContainer>
             <Button>ADD TO CART</Button>
           </AddContainer>
