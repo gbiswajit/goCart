@@ -5,6 +5,10 @@ import Announcement from "../Components/Announcement";
 import Footer from "../Components/Footer";
 import Navbar from "../Components/Navbar";
 import { mobile } from "../Responsive";
+import StripeCheckout from "react-stripe-checkout";
+import { useEffect, useState } from "react";
+
+const KEY=process.env.REACT_APP_STRIPE;
 
 const Container = styled.div``;
 
@@ -157,6 +161,12 @@ const Button = styled.button`
 
 const Cart = () => {
   const cart=useSelector(state=> state.cart)
+  const [stripeToken, setStripeToken]=useState(null)
+
+  const onToken=(token)=>{
+    setStripeToken(token);
+  }
+
 
   return (
     <Container>
@@ -221,7 +231,18 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>INR {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
+            <StripeCheckout
+              name="goCart"
+              image="https://cdn.searchenginejournal.com/wp-content/uploads/2020/03/the-top-10-most-popular-online-payment-solutions-5e9978d564973-1520x800.png"
+              billingAddress
+              shippingAddress
+              description={`Your total is INR ${cart.total}`}
+              amount={cart.total*100}
+              token={onToken}
+              stripeKey={KEY}
+            >
+              <Button>CHECKOUT NOW</Button>
+            </StripeCheckout>
           </Summary>
         </Bottom>
       </Wrapper>
